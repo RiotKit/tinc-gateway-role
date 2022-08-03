@@ -45,7 +45,7 @@
 
 - name: Set host key fact
   set_fact:
-      client_key: client_key_stdout.stdout
+      client_key: "{{ client_key_stdout.stdout }}"
 
 # Copy key to the gateway node
 - name: Create client host file on gateway node

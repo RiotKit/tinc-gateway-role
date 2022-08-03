@@ -39,4 +39,4 @@
 
 - name: Set host key fact
   set_fact:
-      gateway_key: gateway_key_stdout.stdout
+      gateway_key: "{{ gateway_key_stdout.stdout }}"
