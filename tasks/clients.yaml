@@ -2,4 +2,4 @@
   loop: "{{ clients }}"
   loop_control:
       loop_var: client
-  include: client.single.yaml
+  include_tasks: client.single.yaml

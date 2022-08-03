@@ -5,3 +5,6 @@ Subnet = {{ gateway_ip }}/32
 {% for subnet in subnets_to_expose %}
 Subnet = {{ subnet }}
 {% endfor %}
+
+# Public key of the gateway
+{{ gateway_key }}

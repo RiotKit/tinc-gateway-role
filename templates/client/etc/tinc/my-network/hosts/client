@@ -1,4 +1,5 @@
-# VPN address
+# VPN address. Must be on both sides, without this line the nodes wont be able to ping each other
 Subnet = {{ client.ip }}/32
 
+# My public key, should be propagated to other VPN peers, including gateway
 {{ client_key }}

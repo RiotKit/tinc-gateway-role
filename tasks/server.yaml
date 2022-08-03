@@ -18,6 +18,23 @@
       dest: "/etc/tinc/{{ network_name }}/tinc-up"
       mode: "u+rwx,g+rx,o"
 
+- set_fact:
+      gateway_key: ""
+
+- name: Check if gateway host file already exists - to extract public key from it
+  register: public_key_exists
+  stat:
+      path: "/etc/tinc/{{ network_name }}/hosts/{{ gateway_name }}"
+
+- name: Extract existing public key to not delete it
+  when: public_key_exists.stat.exists
+  block:
+      - name: Extract key
+        shell: "/usr/local/bin/key-extractor /etc/tinc/{{ network_name }}/hosts/{{ gateway_name }}"
+        register: gateway_key_stdout
+      - set_fact:
+            gateway_key: "{{ gateway_key_stdout.stdout }}"
+
 - name: Create a gateway host file
   template:
       src: server/etc/tinc/my-network/hosts/gateway
