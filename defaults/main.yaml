@@ -7,6 +7,8 @@ gateway_public_ip: "1.2.3.4"  # set this to onion domain if using TOR
 gateway_ip: "10.120.0.1"
 gateway_mask: "255.255.255.0"
 gateway_hw_ether: "fe:fd:0:0:0:0"
+gateway_systemd_enable_on_startup: true
+gateway_systemd_started: true
 tor_gateway: true
 
 # every host configration e.g. /tmp/tinc-gateway/vpn should be moved into /etc/tinc/onionvpn
