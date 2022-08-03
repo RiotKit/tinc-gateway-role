@@ -1,0 +1,11 @@
+- name: Enable VPN on system startup
+  when: gateway_systemd_enable_on_startup
+  systemd:
+      name: "tinc@{{ network_name }}"
+      enabled: true
+
+- name: Restart VPN
+  when: gateway_systemd_started
+  systemd:
+      name: "tinc@{{ network_name }}"
+      state: restarted

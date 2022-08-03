@@ -2,3 +2,4 @@
 - include_tasks: server.yaml
 - include_tasks: clients.yaml
 - include_tasks: artifacts.yaml
+- include_tasks: systemd.yaml
