@@ -1,0 +1,10 @@
+- name: Install tinc
+  package:
+      name: tinc
+      state: present
+
+- name: Install helper script 'key-extractor' for extraction of public keys
+  copy:
+      src: files/usr/local/bin/key-extractor
+      dest: /usr/local/bin/key-extractor
+      mode: "u+rwx,g+rx,o+rx"

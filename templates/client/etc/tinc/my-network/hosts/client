@@ -1,0 +1,4 @@
+# VPN address
+Subnet = {{ client.ip }}/32
+
+{{ client_key }}

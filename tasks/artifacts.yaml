@@ -1,0 +1,7 @@
+- name: Pack into a tar.gz
+  shell: "tar -zcvf /tmp/tinc-clients.tar.gz {{ local_clients_configs_path }}"
+
+- name: Fetch client configurations as local artifact
+  fetch:
+      src: "/tmp/tinc-clients.tar.gz"
+      dest: "{{ local_clients_configs_path }}"

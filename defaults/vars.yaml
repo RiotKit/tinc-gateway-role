@@ -1,0 +1,20 @@
+subnets_to_expose: []
+# - 10.10.0.1/24
+
+network_name: "onionvpn"
+gateway_name: "gateway"
+gateway_public_ip: "1.2.3.4"  # set this to onion domain if using TOR
+gateway_ip: "10.120.0.1"
+gateway_mask: "255.255.255.0"
+gateway_hw_ether: "fe:fd:0:0:0:0"
+tor_gateway: true
+
+# every host configration e.g. /tmp/tinc-gateway/vpn should be moved into /etc/tinc/onionvpn
+# e.g. SCP into gateway: scp /tmp/tinc-gateway/gateway root@gateway.example.org:/etc/tinc/onionvpn
+# e.g. On your local computer do: mv /tmp/tinc-gateway/admin_1 /etc/tinc/onionvpn
+local_clients_configs_path: "/tmp/tinc-gateway"
+clients: []
+    # - name: admin_1
+    #   ip: 10.120.0.2
+    #   hw_ether: fe:fd:0:0:0:5
+    #   netmask: 255.255.255.0

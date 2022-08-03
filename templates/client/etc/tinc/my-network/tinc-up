@@ -1,0 +1,7 @@
+#!/bin/sh
+ifconfig $INTERFACE hw ether {{ client.hw_ether }}
+ifconfig $INTERFACE {{ client.ip }} netmask {{ netmask | default("255.255.255.0") }} -arp
+
+{% for subnet in subnets_to_expose %}
+ip -4 route add {{ subnet }} dev {{ dev_interface | default("tun0") }}
+{% endfor %}

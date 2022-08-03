@@ -1,0 +1,12 @@
+Address = {{ gateway_public_ip }}
+
+# VPN address
+Subnet = {{ gateway_ip }}/32
+
+# Subnets to expose
+{% for subnet in subnets_to_expose %}
+Subnet = {{ subnet }}
+{% endfor %}
+
+# Public key of the gateway
+{{ gateway_key }}

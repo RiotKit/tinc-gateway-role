@@ -1,0 +1,3 @@
+#!/bin/sh
+ifconfig $INTERFACE hw ether {{ gateway_hw_ether }}
+ifconfig $INTERFACE {{ gateway_ip }} netmask {{ gateway_mask }} -arp

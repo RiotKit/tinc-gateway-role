@@ -1,0 +1,4 @@
+#!/bin/bash
+{% for subnet in subnets_to_expose %}
+ip -4 route del {{ subnet }} dev {{ dev_interface | default("tun0") }} || true
+{% endfor %}

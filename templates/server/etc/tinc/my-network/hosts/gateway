@@ -1,0 +1,7 @@
+# VPN address
+Subnet = {{ gateway_ip }}/32
+
+# Subnets to expose
+{% for subnet in subnets_to_expose %}
+Subnet = {{ subnet }}
+{% endfor %}

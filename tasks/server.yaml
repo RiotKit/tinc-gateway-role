@@ -1,0 +1,42 @@
+- name: Create directory
+  file:
+      path: "{{ item }}"
+      state: directory
+  with_items:
+      - "/etc/tinc/{{ network_name }}"
+      - "/etc/tinc/{{ network_name }}/hosts"
+
+- name: Create tinc.conf
+  template:
+      src: server/etc/tinc/my-network/tinc.conf
+      dest: "/etc/tinc/{{ network_name }}/tinc.conf"
+      mode: "u+rw,g+r,o"
+
+- name: Create tinc-up script
+  template:
+      src: server/etc/tinc/my-network/tinc-up
+      dest: "/etc/tinc/{{ network_name }}/tinc-up"
+      mode: "u+rwx,g+rx,o"
+
+- name: Create a gateway host file
+  template:
+      src: server/etc/tinc/my-network/hosts/gateway
+      dest: "/etc/tinc/{{ network_name }}/hosts/{{ gateway_name }}"
+      mode: "u+rw,g+rx,o"
+
+- name: Check if host keys exists
+  register: keys_exists
+  stat:
+      path: "/etc/tinc/{{ network_name }}/rsa_key.priv"
+
+- name: Generate host keys
+  when: not keys_exists.stat.exists
+  shell: "tincd -n {{ network_name }} -K"
+
+- name: Remember public key in the memory
+  shell: "/usr/local/bin/key-extractor /etc/tinc/{{ network_name }}/hosts/{{ gateway_name }}"
+  register: gateway_key_stdout
+
+- name: Set host key fact
+  set_fact:
+      gateway_key: gateway_key_stdout.stdout

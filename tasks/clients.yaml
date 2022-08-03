@@ -1,0 +1,5 @@
+- name: Create client host files on gateway node
+  loop: "{{ clients }}"
+  loop_control:
+      loop_var: client
+  include: client.single.yaml

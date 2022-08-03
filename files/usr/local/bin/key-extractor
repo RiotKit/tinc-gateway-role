@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+
+import sys
+
+with open(sys.argv[1], 'r') as f:
+    lines = f.readlines()
+    recording = False
+
+    for line in lines:
+        if line.startswith("-----BEGIN RSA"):
+            recording = True
+
+        if recording:
+            sys.stdout.write(line)
+
+        if line.startswith("-----END RSA"):
+            break
