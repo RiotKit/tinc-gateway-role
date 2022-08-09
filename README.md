@@ -1,6 +1,8 @@
 Tinc Gateway VPN
 ================
 
+![architecture](./docs/architecture.png)
+
 Purpose of this setup is to expose private subnets behind `Gateway node` to the `Client nodes`.
 
 **Features:**
